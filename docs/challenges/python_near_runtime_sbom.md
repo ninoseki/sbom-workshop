@@ -4,8 +4,6 @@
 - [pkg_resources module](#pkg_resources-module)
 - [The challenge](#the-challenge)
 - [How to test the challenge](#how-to-test-the-challenge)
-- [Notes](#notes)
-- [Possible solutions or hints](#possible-solutions-or-hints)
 
 ## Demystifying Python Module Search Path
 
@@ -63,42 +61,17 @@ for dist in pkg_resources.find_distributions(site_package):
 
 ## The challenge
 
-Implement a function to get site packages from a Python process.
+Implement a function to compose components based on a path of a site package.
 
 - Implement `get_site_packages()` in `sbom_workshop/python/site_packages.py`
 
 ```python
 # sbom_workshop/python/site_packages.py
 
-def get_site_packages(process: psutil.Process) -> set[str]:
-    """Get site packages used by a Python process"""
+def site_package_to_components(path: str) -> list[Component]:
+    """Convert a site package into a list of components"""
     raise NotImplementedError()
 ```
-
-### Notes
-
-- A process is provided to the function as [psutil](https://psutil.readthedocs.io/en/latest/#)'s [Process](https://psutil.readthedocs.io/en/latest/#process-class) object
-- It is guaranteed that a given process is a Python process
-- A function to get components from a site package is already implemented. (`site_package_to_components()`)
-
-### Possible solutions or hints
-
-- Execute `site.getsitepackages()` with the Python used by the process
-- A virtual environment is a matryoshka!
-
-```bash
-$ cd /workspaces/jsac2023-sbom-workshop
-$ poetry run python -m http.server 8888
-Serving HTTP on 0.0.0.0 port 8888 (http://0.0.0.0:8888/) ...
-```
-
-You can find the virtual environment of the above process in `cmdline`.
-
-| Name    | Value                                                                     |
-| ------- | ------------------------------------------------------------------------- |
-| exe     | /usr/local/bin/python3.10                                                 |
-| cwd     | /workspaces/jsac2023-sbom-workshop                                        |
-| cmdline | `/workspaces/jsac2023-sbom-workshop/.venv/bin/python` -m http.server 8888 |
 
 ### How to test the challenge
 
@@ -109,5 +82,6 @@ pytest tests/python/test_site_packages.py
 Also you can produce CycloneDX SBOM with the following command along with the function.
 
 ```bash
-sbom-workshop-cli python site-packages | jq .
+sbom-workshop-cli python site-packages /path/to/site_packages | jq .
+sbom-workshop-cli python site-packages /workspaces/sbom_workshop/.venv/lib/python3.10/site-packages | jq .
 ```

@@ -1,7 +1,6 @@
 # SBOM Workshop
 
 - [Objectives](./docs/objectives.md)
-- [Timetable](./docs/timetable.md)
 - [Setup](./docs/setup.md)
 - [Lectures](./docs/lectures/index.md)
 - [Challenges](./docs/challenges/index.md)

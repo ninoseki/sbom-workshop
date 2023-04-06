@@ -115,6 +115,9 @@ cargo install rust-audit-info
 rust-audit-info /path/to/file
 ```
 
+> **Note**
+> This commands do not work in the dev container.
+
 ### By `objcopy`
 
 ```bash

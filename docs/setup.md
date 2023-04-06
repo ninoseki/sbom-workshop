@@ -104,9 +104,14 @@ $ poetry run pytest
 
 ## Directory structure
 
-| Path                               | Desc.                               |
-| ---------------------------------- | ----------------------------------- |
-| `sbom-workshop-cligradle.lockfile` | A Gradle lock file                  |
-| `/app/python/requirements.txt`     | A Pip lock file                     |
-| `/workspaces/sbom-workshop`        | A VS Code workspace                 |
-| `/workspaces/sbom-workshop/.venv`  | A virtualenv path for the workspace |
+| Path                              | Desc.                               |
+| --------------------------------- | ----------------------------------- |
+| `/workspaces/sbom-workshop`       | A VS Code workspace                 |
+| `/workspaces/sbom-workshop/.venv` | A virtualenv path for the workspace |
+
+| Path           | Desc.                |
+| -------------- | -------------------- |
+| `/app/java/`   | Java app directory   |
+| `/app/python/` | Python app directory |
+| `/app/rust/`   | Rust app directory   |
+| `/app/go/`     | Go app directory     |
