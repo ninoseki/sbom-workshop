@@ -5,6 +5,7 @@
 - [Tools](#tools)
   - [microsoft/sbom-tool](#microsoftsbom-tool)
   - [anchore/syft](#anchoresyft)
+  - [advanced-security/gh-sbom](#advanced-securitygh-sbom)
 
 ## Code it yourself
 
@@ -141,3 +142,88 @@ syft /app/java/ -o cyclonedx-json | jq ".components[] | .purl"
 (Based on `syft` v0.75.0)
 
 See https://github.com/anchore/syft/tree/main/syft/pkg/cataloger for more details.
+
+### advanced-security/gh-sbom
+
+> This is a gh CLI extension that outputs JSON SBOMs (in SPDX or CycloneDX format) for your GitHub repository using information from Dependency graph.
+>
+> --- https://github.com/advanced-security/gh-sbom
+
+**Usage**
+
+```bash
+$ gh sbom --help
+Usage of gh-sbom:
+  -c, --cyclonedx           Use CycloneDX SBOM format. Default is to use SPDX.
+  -l, --license             Include license information from clearlydefined.io in SBOM.
+  -r, --repository string   Repository to query. Current directory used by default.
+pflag: help requested
+
+# SPDX
+$ gh sbom | jq
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "github.com/...",
+  "documentNamespace": "https://spdx.org/spdxdocs/github.com/...",
+  "creationInfo": {
+    "creators": [
+      "Organization: GitHub, Inc",
+      "Tool: gh-sbom-0.0.8"
+    ],
+    "created": "2023-04-09T09:51:22Z"
+  },
+  "packages": [...]
+}
+
+# CycloneDX
+$ gh sbom -c | jq
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2023-04-09T09:49:51Z",
+    "tools": [
+      {
+        "vendor": "advanced-security",
+        "name": "gh-sbom",
+        "version": "0.0.8"
+      }
+    ],
+    "licenses": [
+      {
+        "expression": "CC0-1.0"
+      }
+    ]
+  },
+  "components": [...]
+}
+```
+
+> **Note**
+> gh is not installed in the dev container.
+
+## How it works
+
+> The recommended formats explicitly define which versions are used for all direct and all indirect dependencies. If you use these formats, your dependency graph is more accurate. It also reflects the current build set up and enables the dependency graph to report vulnerabilities in both direct and indirect dependencies. Indirect dependencies that are inferred from a manifest file (or equivalent) are excluded from the checks for insecure dependencies.
+>
+> --- https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph#supported-package-ecosystems
+
+| Ecosystem            | Detection mechanisms                                                      |
+| -------------------- | ------------------------------------------------------------------------- |
+| .NET                 | `.csproj`, `.vbproj`, `.nuspec`, `.vcxproj`, `.fsproj`, `packages.config` |
+| Cargo                | `Cargo.lock`, `Cargo.toml`                                                |
+| Go                   | `go.mod`                                                                  |
+| Maven                | `pom.xml`                                                                 |
+| NPM                  | `package.json`, `package-lock.json`, `yarn.lock` (Yarn)                   |
+| Packagist (Composer) | `composer.lock`, `composer.json`                                          |
+| Pub (Dart)           | `pubspec.lock`, `pubsec.yaml`                                             |
+| PyPI                 | `requirements.txt`, `pipfile.lock` (Pipenv), `poetry.lock` (Poetry), etc. |
+| RubyGems             | `Gemfile.lock`, `.gemspec` , `Gemfile`                                    |
+
+The graph is probably based on Dependantbot.
+
+- https://github.com/dependabot/dependabot-core
+- https://github.com/dependabot/dependabot-script
