@@ -1,0 +1,44 @@
+# Troubleshooting
+
+- [I want to install XXX in the dev container](#i-want-to-install-xxx-in-the-dev-container)
+- [I want to recreate the dev container](#i-want-to-recreate-the-dev-container)
+- [The interpreter is not set in the dev container](#the-interpreter-is-not-set-in-the-dev-container)
+- [Python/Java processes are not running](#pythonjava-processes-are-not-running)
+
+## I want to install XXX in the dev container
+
+You can install anything what you want. Note that it will be disappeared if you rebuild the container.
+
+```bash
+sudo apt install XXX
+```
+
+## I want to recreate the dev container
+
+Open the command pallette by `⇧⌘P` in Mac / `Ctrl+Shift+P` in Windows and select `Dev Containers: Rebuild and Reopen in Container`.
+
+![img](https://imgur.com/IGr5nNt.png)
+
+### References
+
+- [VS Code: Create a Dev Container](https://code.visualstudio.com/docs/devcontainers/create-dev-container)
+- [VS Code: Keyboard Shortcuts Reference](https://code.visualstudio.com/docs/getstarted/keybindings#_keyboard-shortcuts-reference)
+
+## The interpreter is not set in the dev container
+
+If the Python interpreter is not configured in the dev container, please set to use `/workspaces/jsac2023-sbom-workshop/.venv/bin/python` (= `python.defaultInterpreterPath`) as the interpreter.
+
+![img](https://imgur.com/O94odBn.png)
+
+## Python/Java processes are not running
+
+If you fail to check Python/Java app's running status by curl, please execute the following command.
+
+```bash
+# the script kicks off the apps
+/app/postStartCommand.sh
+
+# then it will work
+curl localhost:8000
+curl localhost:8080
+```

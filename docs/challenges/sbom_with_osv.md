@@ -1,0 +1,25 @@
+# SBOM based vulnerability detection with OSV
+
+- [The challenge](#the-challenge)
+
+## The challenge
+
+Detect vulnerabilities in generated SBOMs in the previous challenges by using [google/osv-scanner](https://github.com/google/osv-scanner), the official OSV based scanner by Google.
+
+> OSV-Scanner provides an officially supported frontend to the OSV database that connects a project’s list of dependencies with the vulnerabilities that affect them. Since the OSV.dev database is open source and distributed, it has several benefits in comparison with closed source advisory databases and scanners:
+>
+> --- https://github.com/google/osv-scanner
+
+**Usage**
+
+```bash
+osv-scanner --sbom /path/fo/file
+```
+
+```bash
+sbom-workshop-cli python requirements /app/python/requirements.txt > requirements.json
+
+osv-scanner --sbom requirements.json
+# if you want to know more details, use --json
+osv-scanner --sbom requirements.json --json | jq .
+```

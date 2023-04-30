@@ -1,0 +1,97 @@
+# Python static SBOM with requirements.txt
+
+- [What is `requirements.txt`](#what-is-requirementstxt)
+- [The challenge](#the-challenge)
+- [Notes](#notes)
+- [Possible solutions or hints](#possible-solutions-or-hints)
+- [How to test the challenge](#how-to-test-the-challenge)
+- [The bonus challenge](#the-bonus-challenge)
+- [Hints for the bonus challenge](#hints-for-the-bonus-challenge)
+
+## What is `requirements.txt`
+
+> Requirements files serve as a list of items to be installed by pip, when using pip install. Files that use this format are often called “pip requirements.txt files”, since requirements.txt is usually what these files are named (although, that is not a requirement).
+>
+> --- https://pip.pypa.io/en/stable/reference/requirements-file-format/#requirements-file-format
+
+```
+SomeProject
+SomeProject == 1.3
+SomeProject >= 1.2, < 2.0
+SomeProject[foo, bar]
+SomeProject ~= 1.4.2
+SomeProject == 5.4 ; python_version < '3.8'
+SomeProject ; sys_platform == 'win32'
+requests[security] >= 2.8.1, == 2.8.* ; python_version < "2.7"
+```
+
+- Tips:
+  - [nok/pipdev](https://github.com/nok/pipdev) is a good way to understand how the specifier works
+
+## The challenge
+
+Implement a function to parse `requirements.txt` and produce a list of CylcloneDX components.
+
+- Implement `parse_requirements()` in `sbom_workshop/python/requirements.py`
+
+```python
+# sbom_workshop/python/requirements.py
+
+def parse_requirements(path: str) -> list[Component]:
+    """Parse requirements.txt and convert it into a list of components"""
+    raise NotImplementedError()
+```
+
+### Notes
+
+- In this challenge, `requirements.txt` uses the exact match specifier only.
+
+```
+fastapi==0.86.0
+jinja2==2.7.1
+uvicorn==0.19.0
+```
+
+- A CycloneDX component should have `name`, `version` and `purl`
+- Use `pypi` as a PackageURL type. (e.g. `pkg:pypi/requests@2.28.1`)
+  - See [Package URL Type definitions](https://github.com/package-url/purl-spec/blob/master/PURL-TYPES.rst) for more details
+
+### Possible solutions or hints
+
+- Write requirements.txt parser by yourself
+- Use a library:
+  - [pkg_resources](https://setuptools.pypa.io/en/latest/pkg_resources.html) provides a function to parse `requirements.txt`
+    - https://setuptools.pypa.io/en/latest/pkg_resources.html#requirement-objects
+  - Or any other one
+
+### How to test the challenge
+
+The following test tries to test the function with `tests/fixtures/requirements.txt` (= `/app/python/requirements.txt` in the dev container)
+
+```bash
+pytest tests/python/test_requirements.py
+```
+
+Also you can produce CycloneDX SBOM with the following command along with the function.
+
+```bash
+sbom-workshop-cli python requirements /app/python/requirements.txt | jq .
+```
+
+## The bonus challenge
+
+![img](https://live.staticflickr.com/4049/4503951595_c658189d92_3k.jpg)
+(https://www.flickr.com/photos/jlascar/4503951595 by [Jorge Láscar](https://www.flickr.com/photos/jlascar/) / CC BY 2.0 )
+
+A dependency can have dependencies like Matryoshka.
+For example, `fastapi` has [those dependencies](https://github.com/tiangolo/fastapi/blob/master/pyproject.toml#L41-L44). Can you list up all dependencies?
+
+### Hints for the bonus challenge
+
+[PyPI](https://pypi.org/) provides the API to get metadata of a project (= dependency)
+
+- https://warehouse.pypa.io/api-reference/json.html#project
+
+```bash
+http https://pypi.org/pypi/fastapi/0.86.0/json | jq  ".info | .requires_dist"
+```

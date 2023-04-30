@@ -1,0 +1,31 @@
+# Java runtime SBOM
+
+- [The challenge](#the-challenge)
+- [How it works](#how-it-works)
+- [The bonus challenge](#the-bonus-challenge)
+- [References](#references)
+
+## The challenge
+
+Try `jbom` and confirm generated SBOM.
+
+- https://github.com/eclipse/jbom
+
+```bash
+java -jar /app/java/jbom.jar
+```
+
+### How it works
+
+- Attach [Byte Buddy](https://bytebuddy.net/#/) agent into a running java process
+- List up classes loaded
+
+## The bonus challenge
+
+Read `jbom` code and understand how it works more deeply.
+
+## References
+
+- [Byte Buddy](https://bytebuddy.net/#/)
+- [Java byte code in practice (PDF)](https://www.jug.ch/events/slides/150916+17_Java_byte_code_in_practice.pdf)
+- [Making Java more dynamic: runtime code generation for the JVM (PDF)](https://assets.ctfassets.net/oxjq45e8ilak/7Me2OZM1y0IsmoAEeKgWaW/941b640ae7af83adb5c4733b566313bf/Making_Java_more_dynamic.pdf)
