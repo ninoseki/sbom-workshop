@@ -40,7 +40,7 @@ type BuildInfo struct {
 
 `__go_buildinfo` section has the metadata.
 
-![](https://i.imgur.com/y57qsxk.png)
+![](https://imgur.com/FIldtkc.png)
 
 ### By `go version`
 

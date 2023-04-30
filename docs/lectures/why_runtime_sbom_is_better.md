@@ -3,11 +3,11 @@
 - [SBOM types](#sbom-types)
 - [Why runtime SBOM is better](#why-runtime-sbom-is-better)
 
-## SBOM types (reprise)
+## SBOM types
 
-![](https://i.imgur.com/aWjPAgB.png)
+![](https://imgur.com/pMPxC8D.png)
 
-(Source: [Satisfying Safety Standards with the SPDX Build Profile - Brandon Lum, Google & Kate Stewart, The Linux Foundation](https://static.sched.com/hosted_files/ocs2022/25/OSS%20JP_%20Satisfying%20Safety%20Standards%20with%20the%20SPDX%20Build%20Profile.pdf))
+(Source: [Types of Software Bill of Materials (SBOM) - CISA](https://www.cisa.gov/resources-tools/resources/types-software-bill-materials-sbom))
 
 In this workshop, we will use the following binary classification:
 

@@ -1,6 +1,7 @@
 from cyclonedx.model.bom import Bom
 from cyclonedx.model.component import Component
-from cyclonedx.output import OutputFormat, get_instance
+from cyclonedx.output import get_instance
+from cyclonedx.schema import OutputFormat
 
 
 def uniquify_components(components: list[Component]):

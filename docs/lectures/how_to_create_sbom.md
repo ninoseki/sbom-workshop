@@ -17,8 +17,9 @@
 
 ```python
 from cyclonedx.model.bom import Bom
-from cyclonedx.model.component import Component, ComponentType
-from cyclonedx.output import OutputFormat, get_instance
+from cyclonedx.model.component import Component
+from cyclonedx.output import get_instance
+from cyclonedx.schema import OutputFormat
 from packageurl import PackageURL
 
 component_name = "requests"
@@ -68,11 +69,11 @@ cat _manifest/spdx_2.2/manifest.spdx.json | jq ".packages[] | .externalRefs[]? |
 
 Please try it in a host machine instead.
 
-- https://github.com/microsoft/sbom-tool/releases/tag/v0.3.3
+- https://github.com/microsoft/sbom-tool/releases/tag/v1.0.2
 
 ```bash
-# For M1/2 Mac
-wget https://github.com/microsoft/sbom-tool/releases/download/v0.3.3/sbom-tool-osx-x64
+# For ARM Mac
+wget https://github.com/microsoft/sbom-tool/releases/download/v1.0.2/sbom-tool-osx-x64
 chmod +x sbom-tool-osx-x64
 
 ./sbom-tool-osx-x64 generate -b ./ -bc ./.devcontainer/python/ -nsb http://example.com -pn foo -pv 0.1 -ps foo
@@ -97,7 +98,7 @@ chmod +x sbom-tool-osx-x64
 | PyPI      | `setup.py`, `requirements.txt`, `poetry.lock` (Poetry), etc.                                                               |
 | RubyGems  | `Gemfile.lock`                                                                                                             |
 
-(Based on `sbom-tool` v0.3.3 / `component-detection` v3.2.1)
+(Based on `sbom-tool` v1.0.2 / `component-detection` v3.3.5)
 
 See https://github.com/microsoft/component-detection/blob/main/docs/feature-overview.md for more details.
 
@@ -139,7 +140,7 @@ syft /app/java/ -o cyclonedx-json | jq ".components[] | .purl"
 | Hex                  | `mix.lock`                                                                            |
 | Rebar3               | `rebar.lock`                                                                          |
 
-(Based on `syft` v0.75.0)
+(Based on `syft` v0.79.0)
 
 See https://github.com/anchore/syft/tree/main/syft/pkg/cataloger for more details.
 

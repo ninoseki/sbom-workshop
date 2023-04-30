@@ -40,11 +40,11 @@ code jsac2023-sbom-workshop
 
 Click the bottom left corner button (Open a Remote Window) of VS Code.
 
-![](https://i.imgur.com/EskbfTT.png)
+![](https://imgur.com/qoMiIpW.png)
 
 And select "Reopen in Container".
 
-![](https://i.imgur.com/NYNr49G.png)
+![](https://imgur.com/O4w0EYe.png)
 
 It will start a dev container automatically.
 

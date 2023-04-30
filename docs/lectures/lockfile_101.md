@@ -134,10 +134,10 @@ Modern languages such as Go and Rust have a feature to perform an audit on an ex
 
 `__go_buildinfo` section has lock file equivalent metadata.
 
-![](https://i.imgur.com/y57qsxk.png)
+![](https://imgur.com/FIldtkc.png)
 
 ### Rust
 
 `dep-v0` section has lock file equivalent the metadata.
 
-![](https://i.imgur.com/eflM0ET.png)
+![](https://imgur.com/tjiTc36.png)

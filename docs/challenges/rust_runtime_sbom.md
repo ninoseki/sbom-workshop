@@ -104,7 +104,7 @@
 
 `dep-v0` section has the metadata.
 
-![](https://i.imgur.com/eflM0ET.png)
+![](https://imgur.com/tjiTc36.png)
 
 ### By `rust-audit-info`
 

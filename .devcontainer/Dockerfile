@@ -83,11 +83,16 @@ COPY --from=mikefarah/yq:4.32.2 /usr/bin/yq /usr/local/bin/yq
 # install SBOM tools
 WORKDIR /tools
 
-RUN curl -Lo sbom-tool https://github.com/microsoft/sbom-tool/releases/download/v0.3.3/sbom-tool-linux-x64 \
+# install sbom-tool
+RUN curl -Lo sbom-tool https://github.com/microsoft/sbom-tool/releases/download/v1.0.2/sbom-tool-linux-x64 \
 	&& chmod +x sbom-tool \
-	&& sudo mv sbom-tool /usr/local/bin \
-	&& curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sudo sh -s -- -b /usr/local/bin \
-	&& curl -Lo osv-scanner https://github.com/google/osv-scanner/releases/download/v1.3.1/osv-scanner_1.3.1_linux_amd64 \
+	&& sudo mv sbom-tool /usr/local/bin
+
+# install syft
+RUN curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sudo sh -s -- -b /usr/local/bin v0.79.0
+
+# install osv-scanner
+RUN curl -Lo osv-scanner https://github.com/google/osv-scanner/releases/download/v1.3.2/osv-scanner_1.3.2_linux_amd64 \
 	&& chmod +x osv-scanner \
 	&& sudo mv osv-scanner /usr/local/bin
 

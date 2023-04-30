@@ -25,7 +25,7 @@
 - [Linux Foundation - The Software Package Data Exchange (SPDX)](https://spdx.dev/)
 - [NIST - Software Identification (SWID)](https://csrc.nist.gov/projects/Software-Identification-SWID)
 
-![](https://i.imgur.com/maPJgMX.png)
+![](https://imgur.com/36Mdgcv.png)
 
 (Source: [NITA: Framing Software Component Transparency: Establishing a Common Software Bill of Materials (SBOM)](https://ntia.gov/files/ntia/publications/ntia_sbom_framing_2nd_edition_20211021.pdf))
 
@@ -98,9 +98,9 @@
 
 ## SBOM types
 
-![](https://i.imgur.com/aWjPAgB.png)
+![](https://imgur.com/pMPxC8D.png)
 
-(Source: [Satisfying Safety Standards with the SPDX Build Profile - Brandon Lum, Google & Kate Stewart, The Linux Foundation](https://static.sched.com/hosted_files/ocs2022/25/OSS%20JP_%20Satisfying%20Safety%20Standards%20with%20the%20SPDX%20Build%20Profile.pdf))
+(Source: [Types of Software Bill of Materials (SBOM) - CISA](https://www.cisa.gov/resources-tools/resources/types-software-bill-materials-sbom))
 
 ## Why CycloneDX?
 
