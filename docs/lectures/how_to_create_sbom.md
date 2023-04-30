@@ -46,7 +46,8 @@ print(output_instance.output_as_string())
 > --- https://github.com/microsoft/sbom-tool
 
 > **Warning**
-> sbom-tool does not work in the dev container with ARM based Mac (and also Windows?).
+>
+> `sbom-tool` does not work in the dev container with ARM based Mac (and also Windows?).
 > Please see the workaround section if you are using ARM Mac.
 
 **Usage**
@@ -153,7 +154,8 @@ See https://github.com/anchore/syft/tree/main/syft/pkg/cataloger for more detail
 > --- https://github.com/advanced-security/gh-sbom
 
 > **Warning**
-> gh-sbom is not installed in the dev container.
+>
+> `gh-sbom` is not installed in the dev container.
 
 **Usage**
 
