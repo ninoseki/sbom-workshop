@@ -155,7 +155,7 @@ See https://github.com/anchore/syft/tree/main/syft/pkg/cataloger for more detail
 
 > **Warning**
 >
-> `gh-sbom` is not installed in the dev container.
+> `gh` is not installed in the dev container.
 
 **Usage**
 
