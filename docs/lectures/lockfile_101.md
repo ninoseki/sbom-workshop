@@ -114,7 +114,8 @@ unzip struts2-core-6.1.2.jar -d struts2
 yq -o json struts2/META-INF/maven/org.apache.struts/struts2-core/pom.xml | jq .project.dependencies
 ```
 
-Note `pom.xml` can be excluded from a built executable by settings `addMavenDescriptor` as `false`.
+> **Note**
+> pom.xml can be excluded from a built executable by settings `addMavenDescriptor` as `false`.
 
 > addMavenDescriptor
 > Whether the created archive will contain these two Maven files:
@@ -124,8 +125,6 @@ Note `pom.xml` can be excluded from a built executable by settings `addMavenDesc
 >
 > --- https://maven.apache.org/shared/maven-archiver/
 
-Note that there is another approach that does not rely on a lock file.
-
 ## Go & Rust
 
 Modern languages such as Go and Rust have a feature to perform an audit on an executable by embedding metadata in a section.
@@ -134,10 +133,10 @@ Modern languages such as Go and Rust have a feature to perform an audit on an ex
 
 `__go_buildinfo` section has lock file equivalent metadata.
 
-![](https://imgur.com/FIldtkc.png)
+![img](https://imgur.com/FIldtkc.png)
 
 ### Rust
 
 `dep-v0` section has lock file equivalent the metadata.
 
-![](https://imgur.com/tjiTc36.png)
+![img](https://imgur.com/tjiTc36.png)

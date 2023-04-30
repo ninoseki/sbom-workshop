@@ -9,6 +9,5 @@ A participant can learn:
 - Types of SBOM and SBOM's limitations
 - How to use SBOM for the vulnerability detection along with OSV
 
-## Notes
-
-Python and Java are hands-on subjects. Also a participant needs to write Python to solve a challenge. So at least minimal knowledge of Python is required to join.
+> **Note**
+> Python and Java are hands-on subjects. Also a participant needs to write Python to solve a challenge. So at least minimal knowledge of Python is required to join.

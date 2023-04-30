@@ -12,9 +12,7 @@ Try `jbom` and confirm generated SBOM.
 - https://github.com/eclipse/jbom
 
 ```bash
-cd /tmp
-wget https://github.com/eclipse/jbom/releases/download/v1.2.1/jbom-1.2.1.jar
-java -jar jbom-1.2.1.jar
+java -jar /app/java/jbom.jar
 ```
 
 ### How it works

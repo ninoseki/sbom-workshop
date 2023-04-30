@@ -1,6 +1,6 @@
 # Notes on the hands-on challenges
 
-- `sbom_workshop/` already has a scaffold to build CycloneDX SBOM
+- `sbom_workshop/` already has a scaffold for building CycloneDX SBOM
 - A challenge is implementing a function incomplete
 - An implementation of a challenge is testable by `pytest`
 - You will be able to create SBOM by the CLI tool (`sbom-workshop-cli`) after finishing the challenges

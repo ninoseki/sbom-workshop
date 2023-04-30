@@ -34,7 +34,10 @@ FROM python:3.11 as python
 
 WORKDIR /usr/src/app
 
-COPY ./requirements.txt ./pyproject.toml ./poetry.lock ./poetry.toml ./
+ENV POETRY_CACHE_DIR /usr/src/app/.cache/pypoetry
+
+COPY ./requirements.txt ./pyproject.toml ./poetry.lock ./
+
 RUN pip install -U pip \
 	&& pip install -r requirements.txt \
 	&& poetry config virtualenvs.in-project true \
@@ -80,13 +83,10 @@ RUN apt update \
 # install yq
 COPY --from=mikefarah/yq:4.32.2 /usr/bin/yq /usr/local/bin/yq
 
-# install SBOM tools
-WORKDIR /tools
-
 # install sbom-tool
 RUN curl -Lo sbom-tool https://github.com/microsoft/sbom-tool/releases/download/v1.0.2/sbom-tool-linux-x64 \
 	&& chmod +x sbom-tool \
-	&& sudo mv sbom-tool /usr/local/bin
+	&& mv sbom-tool /usr/local/bin
 
 # install syft
 RUN curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sudo sh -s -- -b /usr/local/bin v0.79.0
@@ -94,13 +94,17 @@ RUN curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | 
 # install osv-scanner
 RUN curl -Lo osv-scanner https://github.com/google/osv-scanner/releases/download/v1.3.2/osv-scanner_1.3.2_linux_amd64 \
 	&& chmod +x osv-scanner \
-	&& sudo mv osv-scanner /usr/local/bin
+	&& mv osv-scanner /usr/local/bin
 
 USER $USERNAME
 
 # copy Java executable & lockfile
 COPY --chown=$USERNAME --from=java /usr/src/app/build/libs/*.jar /app/java/spring-boot-application.jar
-COPY --chown=$USERNAME --from=java /usr/src/app/gradle.lockfile /app/python/gradle.lockfile
+COPY --chown=$USERNAME --from=java /usr/src/app/gradle.lockfile /app/java/gradle.lockfile
+
+# install jbom
+RUN curl -Lo /tmp/jbom.jar https://github.com/eclipse/jbom/releases/download/v1.2.1/jbom-1.2.1.jar \
+	&& mv /tmp/jbom.jar /app/java/jbom.jar
 
 # copy Rust executable & lockfile
 COPY --chown=$USERNAME --from=rust /usr/src/app/target/release/hello_world /app/rust/hello_world
@@ -112,18 +116,16 @@ COPY --chown=$USERNAME --from=go /usr/src/app/go.sum /app/go/go.sum
 
 # copy Python site-packages
 COPY --from=python /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+COPY --from=python /usr/local/bin/pip /usr/local/bin/pip
 COPY --from=python /usr/local/bin/poetry /usr/local/bin/poetry
 COPY --from=python /usr/local/bin/uvicorn /usr/local/bin/uvicorn
 
 # copy Python app
 COPY --chown=$USERNAME python /app/python
 
-# copy .venv
-WORKDIR /workspaces/sbom-workshop
+# copy Poetry cache
+COPY --chown=$USERNAME --from=python /usr/src/app/.cache/pypoetry /home/vscode/.cache/pypoetry
 
-COPY --chown=$USERNAME --from=python /usr/src/app/.venv /workspaces/sbom-workshop/.venv
-
-# set post start commadn
-WORKDIR /app
-
+# copy post create/start command
+COPY --chown=$USERNAME postCreateCommand.sh /app/
 COPY --chown=$USERNAME postStartCommand.sh /app/

@@ -36,15 +36,16 @@ git clone https://github.com/ninoseki/jsac2023-sbom-workshop
 code jsac2023-sbom-workshop
 ```
 
-(Note: if you are unable to run `code` command, please follow [this instruction](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line))
+> **Note**
+> Please follow [this instruction](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line)) if you are unable to run `code` command
 
 Click the bottom left corner button (Open a Remote Window) of VS Code.
 
-![](https://imgur.com/qoMiIpW.png)
+![img](https://imgur.com/qoMiIpW.png)
 
 And select "Reopen in Container".
 
-![](https://imgur.com/O4w0EYe.png)
+![img](https://imgur.com/O4w0EYe.png)
 
 It will start a dev container automatically.
 
@@ -91,7 +92,8 @@ curl localhost:8080
 
 If you still have the issue, please rebuild the container.
 
-Note that Python requirements for the hands-on challenges are installed in the virtual environment via Poetry. It is activated by default.
+> **Note**
+> Python requirements for the hands-on challenges are installed in the virtual environment via Poetry. It is activated by default.
 
 ```bash
 $ python ...

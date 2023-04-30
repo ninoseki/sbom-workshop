@@ -43,7 +43,7 @@ ENABLE_USER_SITE: False
 - System site: system level site packages
 - User site: user (virtual environment) level site packages
 
-By default, a virtual environment is entirely isolated from the system-level site-packages.([PEP405](https://peps.python.org/pep-0405/))
+A virtual environment is entirely isolated from the system-level site-packages by default.([PEP405](https://peps.python.org/pep-0405/))
 
 ## pkg_resources module
 
@@ -83,5 +83,8 @@ Also you can produce CycloneDX SBOM with the following command along with the fu
 
 ```bash
 sbom-workshop-cli python site-packages /path/to/site_packages | jq .
+```
+
+```bash
 sbom-workshop-cli python site-packages /workspaces/sbom_workshop/.venv/lib/python3.10/site-packages | jq .
 ```

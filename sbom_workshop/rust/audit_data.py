@@ -3,6 +3,7 @@ import zlib
 
 import typer
 from cyclonedx.model.component import Component
+from elftools.elf.elffile import ELFFile
 from packageurl import PackageURL
 
 from sbom_workshop.cyclonedx import components_to_bom, convert_as_json
@@ -28,17 +29,18 @@ def package_to_component(package: dict) -> Component:
 
 
 def parse_binary(path: str) -> list[Component]:
-    import lief
+    with open(path, "rb") as f:
+        elf = ELFFile(f)
 
-    binary = lief.parse(path)
+        audit_data_section = next(
+            (section for section in elf.iter_sections() if section.name == ".dep-v0"),
+            None,
+        )
+        if audit_data_section is None:
+            return []
 
-    audit_data_section = next(
-        (section for section in binary.sections if section.name == ".dep-v0"), None
-    )
-    if audit_data_section is None:
-        return []
+        json_string = zlib.decompress(audit_data_section.data())
 
-    json_string = zlib.decompress(audit_data_section.content)
     json_data = json.loads(json_string)
 
     packages: list[dict] = json_data.get("packages", [])

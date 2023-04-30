@@ -1,5 +1,6 @@
 import typer
 from cyclonedx.model.component import Component
+from elftools.elf.elffile import ELFFile
 from packageurl import PackageURL
 
 from sbom_workshop.cyclonedx import components_to_bom, convert_as_json
@@ -25,18 +26,22 @@ def dep_to_component(dep: str) -> Component:
 
 
 def parse_binary(path: str) -> list[Component]:
-    import lief
+    with open(path, "rb") as f:
+        elf = ELFFile(f)
 
-    binary = lief.parse(path)
+        build_info_section = next(
+            (
+                section
+                for section in elf.iter_sections()
+                if section.name == "__go_buildinfo" or section.name == ".go.buildinfo"
+            ),
+            None,
+        )
+        if build_info_section is None:
+            return []
 
-    build_info_section = next(
-        (section for section in binary.sections if section.name == "__go_buildinfo"),
-        None,
-    )
-    if build_info_section is None:
-        return []
+        data = build_info_section.data()
 
-    data = bytes(build_info_section.content)
     # very dirty hack to parse build info...
     text = data.decode(errors="ignore")
     deps: list[str] = []

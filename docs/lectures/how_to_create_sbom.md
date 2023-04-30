@@ -45,6 +45,10 @@ print(output_instance.output_as_string())
 >
 > --- https://github.com/microsoft/sbom-tool
 
+> **Warning**
+> sbom-tool does not work in the dev container with ARM based Mac (and also Windows?).
+> Please see the workaround section if you are using ARM Mac.
+
 **Usage**
 
 ```bash
@@ -63,11 +67,9 @@ sbom-tool generate -b ./ -bc /app/java/ -nsb http://example.com -pn foo -pv 0.1 
 cat _manifest/spdx_2.2/manifest.spdx.json | jq ".packages[] | .externalRefs[]? | .referenceLocator"
 ```
 
-#### Notes
+#### ARM Mac workaround
 
-`sbom-tool` does not work in a dev container with ARM based Mac (and also Windows?).
-
-Please try it in a host machine instead.
+Please try the tool in the host machine instead.
 
 - https://github.com/microsoft/sbom-tool/releases/tag/v1.0.2
 
@@ -150,6 +152,9 @@ See https://github.com/anchore/syft/tree/main/syft/pkg/cataloger for more detail
 >
 > --- https://github.com/advanced-security/gh-sbom
 
+> **Warning**
+> gh-sbom is not installed in the dev container.
+
 **Usage**
 
 ```bash
@@ -202,9 +207,6 @@ $ gh sbom -c | jq
   "components": [...]
 }
 ```
-
-> **Note**
-> gh is not installed in the dev container.
 
 ## How it works
 

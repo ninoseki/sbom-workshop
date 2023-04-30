@@ -17,7 +17,7 @@ sudo apt install XXX
 
 Open the command pallette by `⇧⌘P` in Mac / `Ctrl+Shift+P` in Windows and select `Dev Containers: Rebuild and Reopen in Container`.
 
-![](https://imgur.com/IGr5nNt.png)
+![img](https://imgur.com/IGr5nNt.png)
 
 ### References
 
@@ -28,7 +28,7 @@ Open the command pallette by `⇧⌘P` in Mac / `Ctrl+Shift+P` in Windows and se
 
 If the Python interpreter is not configured in the dev container, please set to use `/workspaces/jsac2023-sbom-workshop/.venv/bin/python` (= `python.defaultInterpreterPath`) as the interpreter.
 
-![](https://imgur.com/O94odBn.png)
+![img](https://imgur.com/O94odBn.png)
 
 ## Python/Java processes are not running
 

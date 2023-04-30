@@ -104,7 +104,7 @@
 
 `dep-v0` section has the metadata.
 
-![](https://imgur.com/tjiTc36.png)
+![img](https://imgur.com/tjiTc36.png)
 
 ### By `rust-audit-info`
 
@@ -129,14 +129,22 @@ objcopy --dump-section .dep-v0=/dev/stdout /app/rust/hello_world | pigz -zd - | 
 ## By Python
 
 ```python
-import lief, zlib, json
+import json
+import zlib
 
-binary = lief.parse("/path/to/file")
-audit_data_section = next(
-    filter(lambda section: section.name == ".dep-v0", binary.sections)
-)
-json_string = zlib.decompress(audit_data_section.content)
-print(json_string.decode())
+from elftools.elf.elffile import ELFFile
+
+with open("/path/to/file", "rb") as f:
+    elf = ELFFile(f)
+
+    audit_data_section = next(
+        (section for section in elf.iter_sections() if section.name == ".dep-v0"),
+        None,
+    )
+    if audit_data_section is not None:
+        json_string = zlib.decompress(audit_data_section.data())
+        json_data = json.loads(json_string)
+        print(json_data)
 ```
 
 ```bash
@@ -208,4 +216,8 @@ $ sbom-workshop-cli rust audit-data /app/rust/target/release/hello_world | jq ".
 ]
 ```
 
-(Dependencies of fishnet v2.6.8)
+## By syft
+
+```bash
+$ syft
+```

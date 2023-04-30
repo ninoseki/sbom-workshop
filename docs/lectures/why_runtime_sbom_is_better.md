@@ -5,7 +5,7 @@
 
 ## SBOM types
 
-![](https://imgur.com/pMPxC8D.png)
+![img](https://imgur.com/pMPxC8D.png)
 
 (Source: [Types of Software Bill of Materials (SBOM) - CISA](https://www.cisa.gov/resources-tools/resources/types-software-bill-materials-sbom))
 
@@ -17,7 +17,7 @@ In this workshop, we will use the following binary classification:
 - Runtime SBOM:
   - Types: `Runtime`
   - Def.: SBOM based on a running process
-  - Notes: `Deployed` can be said as a near-runtime SBOM
+  - Note: `Deployed` can be said as a near-runtime SBOM
 
 ## Why runtime SBOM is better
 

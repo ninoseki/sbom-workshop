@@ -13,7 +13,7 @@ Detect vulnerabilities in generated SBOMs in the previous challenges by using [g
 **Usage**
 
 ```bash
-osv-scanner --sbom {path_to_cyclonedx_sbom}
+osv-scanner --sbom /path/fo/file
 ```
 
 ```bash
