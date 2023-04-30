@@ -115,7 +115,8 @@ yq -o json struts2/META-INF/maven/org.apache.struts/struts2-core/pom.xml | jq .p
 ```
 
 > **Note**
-> pom.xml can be excluded from a built executable by settings `addMavenDescriptor` as `false`.
+>
+> `pom.xml` can be excluded from a built executable by settings `addMavenDescriptor` as `false`.
 
 > addMavenDescriptor
 > Whether the created archive will contain these two Maven files:

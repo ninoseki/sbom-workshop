@@ -116,7 +116,8 @@ rust-audit-info /path/to/file
 ```
 
 > **Note**
-> cargo and rust-audit-info are not installed in the dev container.
+>
+> `cargo` and `rust-audit-info` are not installed in the dev container.
 
 ### By `objcopy`
 

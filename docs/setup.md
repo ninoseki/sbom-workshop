@@ -37,7 +37,8 @@ code jsac2023-sbom-workshop
 ```
 
 > **Note**
-> Please follow [this instruction](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line)) if you are unable to run `code` command
+>
+> Please follow [this instruction](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line) if you are unable to run `code` command
 
 Click the bottom left corner button (Open a Remote Window) of VS Code.
 
@@ -93,6 +94,7 @@ curl localhost:8080
 If you still have the issue, please rebuild the container.
 
 > **Note**
+>
 > Python requirements for the hands-on challenges are installed in the virtual environment via Poetry. It is activated by default.
 
 ```bash
