@@ -55,7 +55,7 @@ A virtual environment is entirely isolated from the system-level site-packages b
 import pkg_resources
 
 # ref. https://setuptools.pypa.io/en/latest/pkg_resources.html#getting-or-creating-distributions
-for dist in pkg_resources.find_distributions("path/to/site_packages"):
+for dist in pkg_resources.find_distributions("/path/to/site_packages"):
     print([dist.project_name, dist.version])
 ```
 
