@@ -220,5 +220,5 @@ $ sbom-workshop-cli rust audit-data /app/rust/hello_world | jq ".components"
 ## By syft
 
 ```bash
-$ syft
+$ syft /app/rust/hello_world
 ```
