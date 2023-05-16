@@ -149,7 +149,7 @@ with open("/path/to/file", "rb") as f:
 ```
 
 ```bash
-$ sbom-workshop-cli rust audit-data /app/rust/target/release/hello_world | jq ".components"
+$ sbom-workshop-cli rust audit-data /app/rust/hello_world | jq ".components"
 [
   {
     "type": "library",
