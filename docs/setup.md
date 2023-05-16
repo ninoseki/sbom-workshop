@@ -32,8 +32,8 @@
 Please make sure to install the [Remote Development extension pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) before proceeding further.
 
 ```bash
-git clone https://github.com/ninoseki/jsac2023-sbom-workshop
-code jsac2023-sbom-workshop
+git clone https://github.com/ninoseki/sbom-workshop
+code sbom-workshop
 ```
 
 > **Note**
