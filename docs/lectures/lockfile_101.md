@@ -138,6 +138,6 @@ Modern languages such as Go and Rust have a feature to perform an audit on an ex
 
 ### Rust
 
-`dep-v0` section has lock file equivalent the metadata.
+`dep-v0` section has lock file equivalent metadata.
 
 ![img](https://imgur.com/tjiTc36.png)
