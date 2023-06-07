@@ -7,7 +7,7 @@
 
 ## The lab env
 
-Please install Docker Desktop and VS Code (with Remode Development extension pack) first.
+Please make sure to install Docker Desktop and VS Code first.
 
 - Docker Desktop 2.0+ (Linux: Docker CE/EE 18+ and Docker Compose 1.2+)
 - VS Code + [Remote Development extension pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
